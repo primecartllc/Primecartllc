@@ -1,0 +1,255 @@
+<!DOCTYPE html><html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prime Cart LLC – Wholesale & Retail</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
+    <style>
+      body{font-family:'Poppins',sans-serif;}
+      /* simple accordion for category sidebar */
+      .cat-item>button{width:100%;text-align:left;padding:0.5rem 0;}
+      .cat-children{max-height:0;overflow:hidden;transition:max-height .3s ease;}
+      .cat-children.open{max-height:500px;}
+    </style>
+  </head>
+  <body class="bg-gray-50">
+    <!-- TOP NEWS BAR -->
+    <div class="bg-blue-900 text-white text-sm py-2 px-4 flex flex-col md:flex-row items-center justify-center gap-2">
+      <p>Sign up for our newsletter to receive special offers.</p>
+      <form class="flex gap-2">
+        <input type="email" placeholder="Your email" class="p-1 rounded text-gray-900" />
+        <button class="bg-yellow-400 text-gray-900 px-3 py-1 rounded">Subscribe</button>
+      </form>
+    </div>
+    <!-- ANNOUNCEMENT -->
+    <div class="bg-yellow-200 text-center text-sm py-2">There is a minimum order requirement of <span class="font-semibold">$1,500</span> (FREE local delivery).</div><!-- HEADER / NAV -->
+<header class="bg-white shadow sticky top-0 z-40">
+  <div class="max-w-7xl mx-auto px-4 md:px-6 flex items-center justify-between py-4">
+    <div class="flex items-center gap-6">
+      <button id="openCat" class="md:hidden text-gray-700">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+      <h1 class="text-xl md:text-2xl font-bold text-blue-700">Prime Cart <span class="text-red-600">LLC</span></h1>
+    </div>
+    <div class="hidden md:flex flex-1 mx-8">
+      <input type="search" placeholder="Search products…" class="w-full border rounded-l-lg p-2" />
+      <button class="bg-blue-600 text-white px-4 rounded-r-lg">Search</button>
+    </div>
+    <div class="flex items-center gap-4">
+      <a href="#signin" class="text-gray-600 hover:text-blue-600 text-sm">Sign In</a>
+      <a href="#signup" class="hidden md:inline-block text-sm bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg">Sign Up</a>
+      <button id="cartButton" class="relative">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.34 2M7 13h10l4-8H5.34m-2 0l1.11 6.68A2 2 0 0 0 6.44 13H19m-6 6h.01M9 19h.01"/></svg>
+        <span id="cartCount" class="absolute -top-1 -right-1 bg-red-500 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">0</span>
+      </button>
+    </div>
+  </div>
+  <!-- DESKTOP SECONDARY NAV -->
+  <nav class="hidden md:flex bg-gray-100 border-t text-sm">
+    <div class="max-w-7xl mx-auto flex gap-6 px-4 py-2">
+      <a href="#" class="hover:text-blue-600">All</a>
+      <a href="#" class="hover:text-blue-600">Baby</a>
+      <a href="#" class="hover:text-blue-600">Beauty & Personal Care</a>
+      <a href="#" class="hover:text-blue-600">Grocery</a>
+      <a href="#" class="hover:text-blue-600">Household</a>
+      <a href="#" class="hover:text-blue-600">Deals</a>
+    </div>
+  </nav>
+</header>
+
+<!-- CATEGORY SIDEBAR -->
+<aside id="categoryDrawer" class="fixed inset-y-0 left-0 w-64 bg-white shadow-lg transform -translate-x-full transition-transform duration-300 z-50 overflow-y-auto">
+  <div class="p-4 border-b flex items-center justify-between">
+    <h4 class="text-lg font-semibold">Categories</h4>
+    <button id="closeCat" class="text-gray-500 hover:text-red-600">&times;</button>
+  </div>
+  <div class="p-4 space-y-2 text-sm">
+    <div class="cat-item">
+      <button class="font-semibold">Baby</button>
+      <div class="cat-children pl-4 pt-1">
+        <a href="#" class="block py-1 hover:text-blue-600">Bathing</a>
+        <a href="#" class="block py-1 hover:text-blue-600">Diapering</a>
+        <a href="#" class="block py-1 hover:text-blue-600">Skin Care</a>
+      </div>
+    </div>
+    <div class="cat-item">
+      <button class="font-semibold">Beauty & Personal Care</button>
+      <div class="cat-children pl-4 pt-1">
+        <a href="#" class="block py-1 hover:text-blue-600">Hair Care</a>
+        <a href="#" class="block py-1 hover:text-blue-600">Oral Care</a>
+        <a href="#" class="block py-1 hover:text-blue-600">Skin Care</a>
+      </div>
+    </div>
+    <div class="cat-item">
+      <button class="font-semibold">Grocery</button>
+      <div class="cat-children pl-4 pt-1">
+        <a href="#" class="block py-1 hover:text-blue-600">Snacks</a>
+        <a href="#" class="block py-1 hover:text-blue-600">Beverages</a>
+        <a href="#" class="block py-1 hover:text-blue-600">Condiments</a>
+      </div>
+    </div>
+    <div class="cat-item">
+      <button class="font-semibold">Household</button>
+      <div class="cat-children pl-4 pt-1">
+        <a href="#" class="block py-1 hover:text-blue-600">Cleaning</a>
+        <a href="#" class="block py-1 hover:text-blue-600">Paper & Plastic</a>
+        <a href="#" class="block py-1 hover:text-blue-600">Pet Supplies</a>
+      </div>
+    </div>
+    <a href="#" class="block font-semibold hover:text-blue-600 mt-4">Deals</a>
+  </div>
+</aside>
+
+<!-- HERO -->
+<section class="bg-gradient-to-r from-blue-50 to-blue-100 py-24 text-center">
+  <h2 class="text-4xl md:text-5xl font-extrabold mb-4">Wholesale Prices – Retail Convenience</h2>
+  <p class="text-gray-700 max-w-2xl mx-auto mb-8">Serving supermarkets, pharmacies & independent retailers with 1,000+ premium SKUs. Fast delivery & unbeatable bulk discounts.</p>
+  <a href="#products" class="inline-block bg-blue-600 text-white px-8 py-3 rounded-lg shadow hover:bg-blue-700 transition">Browse Catalog</a>
+</section>
+
+<!-- PRODUCT GRID -->
+<section id="products" class="max-w-7xl mx-auto px-4 md:px-6 py-16">
+  <h3 class="text-3xl font-semibold mb-8 text-center">Featured Products</h3>
+  <div id="productGrid" class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3"></div>
+</section>
+
+<!-- AUTH FORMS -->
+<section id="signin" class="max-w-md mx-auto bg-white rounded-xl shadow p-6 mb-12">
+  <h3 class="text-xl font-semibold mb-4">Sign In</h3>
+  <form class="space-y-4">
+    <input type="email" placeholder="Email" class="w-full border p-2 rounded" required />
+    <input type="password" placeholder="Password" class="w-full border p-2 rounded" required />
+    <button class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700">Sign In</button>
+  </form>
+</section>
+
+<section id="signup" class="max-w-md mx-auto bg-white rounded-xl shadow p-6 mb-16">
+  <h3 class="text-xl font-semibold mb-4">Create Account</h3>
+  <form class="space-y-4">
+    <input type="text" placeholder="Full Name" class="w-full border p-2 rounded" required />
+    <input type="email" placeholder="Email" class="w-full border p-2 rounded" required />
+    <input type="password" placeholder="Password" class="w-full border p-2 rounded" required />
+    <button class="w-full bg-green-600 text-white py-2 rounded hover:bg-green-700">Sign Up</button>
+  </form>
+</section>
+
+<!-- CART PANEL -->
+<aside id="cartPanel" class="fixed top-0 right-0 h-full w-80 bg-white shadow-2xl transform translate-x-full transition-transform duration-300 z-50 flex flex-col">
+  <div class="flex items-center justify-between p-4 border-b">
+    <h4 class="text-lg font-semibold">Your Cart</h4>
+    <button id="closeCart" class="text-gray-500 hover:text-red-600">&times;</button>
+  </div>
+  <div id="cartItems" class="flex-1 overflow-y-auto p-4 space-y-4"></div>
+  <div class="p-4 border-t">
+    <div class="flex justify-between mb-4">
+      <span class="font-semibold">Total:</span>
+      <span id="cartTotal" class="font-bold">$0.00</span>
+    </div>
+    <button class="w-full bg-green-600 text-white py-3 rounded-lg hover:bg-green-700">Checkout</button>
+  </div>
+</aside>
+
+<!-- FOOTER -->
+<footer id="contact" class="bg-white border-t py-10">
+  <div class="max-w-7xl mx-auto px-4 md:px-6 grid md:grid-cols-3 gap-8 text-gray-700">
+    <div>
+      <h5 class="font-bold mb-3">Prime Cart LLC</h5>
+      <p>1359 N LEVERETT AVE APT 1
+.<br>FAYETTEVILLE, AR 72703<br>Phone: (773) 851-5824</p>
+    </div>
+    <div>
+      <h5 class="font-bold mb-3">Need Help?</h5>
+      <p class="mb-1">Call us <strong>(773) 851-5824</strong></p>
+      <p>Email: manager@primecartllc.store</p>
+    </div>
+    <div>
+      <h5 class="font-bold mb-3">Stay Connected</h5>
+      <form class="flex">
+        <input type="email" placeholder="Email" class="flex-1 border p-2 rounded-l" />
+        <button class="bg-blue-600 text-white px-4 rounded-r">Subscribe</button>
+      </form>
+    </div>
+  </div>
+  <p class="text-center text-sm text-gray-500 mt-8">© <span id="year"></span> Prime Cart LLC. All rights reserved.</p>
+</footer>
+
+<!-- SCRIPTS -->
+<script>
+  // Dummy products
+  const products=[
+    {id:1,name:'Tide Liquid Detergent 128oz',price:21.99,image:'https://www.mandchomedepot.com/files/images/thumbs/9e1c4775ba23259a77dbf7ea1188ca82.jpg'},
+    {id:2,name:'Bounty Paper Towels 6-Roll',price:11.49,image:'https://de2wfhoo6xqi5.cloudfront.net/size/600/a1d/259/ad3641029fcf3a06fc8b4eef5bb6005772.jpg'},
+    {id:3,name:'Colgate Toothpaste 3-Pack',price:5.99,image:'https://i5.walmartimages.com/seo/Colgate-Sparkling-White-Whitening-Toothpaste-Mint-Zing-6-0-Ounce-Pack-of-3_71e779bb-4eec-413b-9981-f4e4748c20e3.6a5c14b8c33026b9cd8daeea5ba66fc4.jpeg'},
+    {id:4,name:'Clorox Disinfecting Wipes 75ct',price:7.49,image:'https://target.scene7.com/is/image/Target/GUEST_09fa2df5-9022-47be-92a5-3237d0260339?wid=1200&hei=1200&qlt=80&fmt=webp'},
+    {id:5,name:'Johnson Baby Shampoo 20oz',price:4.59,image:'https://www.medoget.com/cdn/shop/files/Johnsons_Baby_Shampoo.png?v=1744621654&width=1000'},
+    {id:6,name:'Folgers Classic Roast 30.5oz',price:8.99,image:'https://i5.walmartimages.com/seo/Folgers-Classic-Roast-Ground-Coffee-Medium-Roast-Coffee-30-5-Ounce-Canister_4213fb97-4524-4cea-a730-2ca8ff2993ad.7498237c394534d54a7bffbf52578bb5.jpeg?odnHeight=573&odnWidth=573&odnBg=FFFFFF'}
+  ];
+
+  // Build product cards
+  const productGrid=document.getElementById('productGrid');
+  products.forEach(p=>{
+    const card=document.createElement('div');
+    card.className='bg-white rounded-xl shadow p-4 flex flex-col';
+    card.innerHTML=`<img src="${p.image}" alt="${p.name}" class="rounded-lg mb-4 aspect-square object-cover" />
+      <h4 class="font-semibold flex-1 text-sm">${p.name}</h4>
+      <div class="mt-2 flex items-center justify-between">
+        <span class="font-bold">$${p.price.toFixed(2)}</span>
+        <button data-id="${p.id}" class="addToCart bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700 text-xs">Add</button>
+      </div>`;
+    productGrid.appendChild(card);
+  });
+
+  // Cart functionality
+  const cartButton=document.getElementById('cartButton');
+  const cartPanel=document.getElementById('cartPanel');
+  const closeCart=document.getElementById('closeCart');
+  const cartItemsEl=document.getElementById('cartItems');
+  const cartTotalEl=document.getElementById('cartTotal');
+  const cartCountEl=document.getElementById('cartCount');
+  let cart=JSON.parse(localStorage.getItem('cart'))||[];
+  const saveCart=()=>localStorage.setItem('cart',JSON.stringify(cart));
+  const updateCartCount=()=>cartCountEl.textContent=cart.reduce((a,i)=>a+i.qty,0);
+  const formatCurrency=n=>`$${n.toFixed(2)}`;
+  const renderCart=()=>{
+    cartItemsEl.innerHTML='';
+    if(!cart.length){cartItemsEl.innerHTML='<p class="text-center text-gray-500 mt-8">Your cart is empty.</p>';cartTotalEl.textContent=formatCurrency(0);return;}
+    let total=0;
+    cart.forEach(item=>{
+      total+=item.price*item.qty;
+      const div=document.createElement('div');
+      div.className='flex items-center gap-3';
+      div.innerHTML=`<img src="${item.image}" alt="${item.name}" class="w-12 h-12 rounded object-cover" />
+        <div class="flex-1"><h5 class="font-semibold text-sm">${item.name}</h5><p class="text-xs text-gray-500">Qty: ${item.qty}</p></div>
+        <span class="text-sm font-semibold">$${(item.price*item.qty).toFixed(2)}</span>`;
+      cartItemsEl.appendChild(div);
+    });
+    cartTotalEl.textContent=formatCurrency(total);
+  };
+  updateCartCount();renderCart();
+  document.addEventListener('click',e=>{
+    if(e.target.classList.contains('addToCart')){
+      const id=Number(e.target.dataset.id);
+      const product=products.find(p=>p.id===id);
+      const existing=cart.find(c=>c.id===id);
+      existing?existing.qty++:cart.push({...product,qty:1});
+      saveCart();updateCartCount();renderCart();
+    }
+  });
+  cartButton.addEventListener('click',()=>cartPanel.classList.remove('translate-x-full'));
+  closeCart.addEventListener('click',()=>cartPanel.classList.add('translate-x-full'));
+
+  // Category accordion
+  document.querySelectorAll('.cat-item>button').forEach(btn=>btn.addEventListener('click',()=>{
+    const panel=btn.nextElementSibling;panel.classList.toggle('open');
+  }));
+  document.getElementById('openCat').addEventListener('click',()=>document.getElementById('categoryDrawer').classList.remove('-translate-x-full'));
+  document.getElementById('closeCat').addEventListener('click',()=>document.getElementById('categoryDrawer').classList.add('-translate-x-full'));
+
+  document.getElementById('year').textContent=new Date().getFullYear();
+</script>
+
+  </body>
+</html>
